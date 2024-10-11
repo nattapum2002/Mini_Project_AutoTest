@@ -5,13 +5,13 @@ test("Register", async ({ page }) => {
   await page.waitForLoadState("networkidle");
 
   await page.getByLabel("คำนำหน้าชื่อ").selectOption("นาย");
-  await page.getByPlaceholder("กรุณากรอกชื่อ").fill("Auto");
+  await page.getByPlaceholder("กรุณากรอกชื่อ").fill("Auto1");
   await page.getByPlaceholder("นามสกุล").fill("test");
   await page.getByRole("combobox").nth(1).selectOption("3");
   await page.getByLabel("ระดับ").selectOption("2");
-  await page.getByPlaceholder("*ไม่จำเป็นต้องใส่ขีด").fill("642221101000"); //รหัสนักศึกษาต้องไม่ซ้ำกัน
-  await page.getByPlaceholder("เบอร์โทรศัพท์").fill("0985457856");
-  await page.getByPlaceholder("*อีเมลมหาลัย").fill("Auto@rmuti.ac.th"); //อีเมลต้องไม่ซ้ำกัน
+  await page.getByPlaceholder("*ไม่จำเป็นต้องใส่ขีด").fill("642221101003"); //รหัสนักศึกษาต้องไม่ซ้ำกัน
+  await page.getByPlaceholder("เบอร์โทรศัพท์").fill("0985457850");
+  await page.getByPlaceholder("*อีเมลมหาลัย").fill("Aut@rmuti.ac.th"); //อีเมลต้องไม่ซ้ำกัน
   await page.getByPlaceholder("ชื่อผู้ใช้").fill("Auto"); //ชื่อผู้ใช้ต้องไม่ซ้ำกัน
   await page.getByPlaceholder("รหัสผ่าน", { exact: true }).fill("password");
   await page.getByPlaceholder("ยืนยันรหัสผ่าน").fill("password");
