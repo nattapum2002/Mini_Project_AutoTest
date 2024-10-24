@@ -5,7 +5,7 @@ test("Register", async ({ page }) => {
   await page.waitForLoadState("networkidle");
 
   await page.getByLabel("คำนำหน้าชื่อ").selectOption("นาย");
-  await page.getByPlaceholder("กรุณากรอกชื่อ").fill("Auto1");
+  await page.getByPlaceholder("กรุณากรอกชื่อ").fill("Auto");
   await page.getByPlaceholder("นามสกุล").fill("test");
   await page.getByRole("combobox").nth(1).selectOption("3");
   await page.getByLabel("ระดับ").selectOption("2");
@@ -165,6 +165,26 @@ test("RegisterFailFillingUsernameRepeatedly", async ({ page }) => {
   await page.waitForTimeout(2000);
 
   await expect(page.getByText("ชื่อผู้ใช้งานซ้ํา")).toBeVisible();
+});
+
+test("RegisterFailNotFillingPassword", async ({ page }) => {
+  await page.goto("http://tms.free.nf/Register");
+  await page.waitForLoadState("networkidle");
+
+  await page.getByLabel("คำนำหน้าชื่อ").selectOption("นาย");
+  await page.getByPlaceholder("กรุณากรอกชื่อ").fill("Auto");
+  await page.getByPlaceholder("นามสกุล").fill("test");
+  await page.getByRole("combobox").nth(1).selectOption("3");
+  await page.getByLabel("ระดับ").selectOption("2");
+  await page.getByPlaceholder("*ไม่จำเป็นต้องใส่ขีด").fill("642221101005");
+  await page.getByPlaceholder("เบอร์โทรศัพท์").fill("0985457852");
+  await page.getByPlaceholder("*อีเมลมหาลัย").fill("Auto5@rmuti.ac.th");
+  await page.getByPlaceholder("ชื่อผู้ใช้").fill("Auto5");
+
+  await page.getByRole("button", { name: "ยืนยัน" }).click();
+  await page.waitForTimeout(2000);
+
+  await expect(page.getByText("กรุณากรอกรหัสผ่าน")).toBeVisible();
 });
 
 test("RegisterFailFillingMismatchedPassword", async ({ page }) => {
